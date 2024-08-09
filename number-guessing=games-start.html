@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jeu de nombre </title>
+</head>
+<body>
+    <p class="guesses"></p>
+    <p class="lastresult"></p>
+    <p class="lowOrHi"></p>
+    <label for="guesses">enter a guess</label>
+    <input type="text" id="guessField" class="gvuessField"/>
+    <input type="submit" value="'submit guess" class="guessSubmit">
+
+    <script>
+        let randomnumber = Math. floor(Math.random()*100)+ 1;
+        let guesses =Document.queryselector("gusses");
+        let lastresult= documsent. querySelector("lastresult");
+        let lowOrHi = document. querySelector("lowOrHi");
+        let guessesSubmit = document. querySelector("gussesSubmit")
+        let guessesField = document. querySelector("guessesField");
+        let guessesCount = 1;
+        let guessesButton;
+        function checkGuess() {
+            let userGuess = number(guessesField.value);
+            if (guessesCount === 1) {
+                guesses.textcontent = "proposition precedentes&nbsp;:";
+            }
+            guesses.textcontent += userGuess +"";
+            if (userGuess === randomnumber) {
+                lastresult.textcontent = "bravo vous avez trouvez le nombre!";
+                lastresult.style.backgroundColor = "green";
+                lowOrHi.textContent = "";
+                setGameOver();
+                 
+            } else if (guessCount === 10) {
+                lastresult.textContent ="!!! PERDU&nbsp;!!!";
+                setGameOver();
+            }else{
+                lastresult.textContent ="faux&nbsp;!";
+                lastresult.style.backgroundColor = "red";
+                if (userGuess < randomnumber){
+                    lowOrHi.textContent ="le nombre saisie est trop petit!";
+                } else (userGuess > randomnumber){
+                    lowOrHi.textContent ="le nombre saisie est trop grand!";
+                }
+            }
+
+            guessCount++;
+            guessField.value ="";
+            guessField.focus();
+            guessesSubmit.addEventListener("click", checkGuess);
+        }
+        function setGameOver(){
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            resetButton = createElement("button");
+            resetButton.textContent = "start new game";
+            document.body.appendChild(resetButton);
+            resetButton.addEventListener("click", resetGame);
+        }
+        function resetGame(){
+            guessCount = 1;
+            let resetparas = document.querySelectorAll(".resultparas p");
+            for (let i = 0; i < resetparas.length; i++) {
+                resetparas[i].textContent ="";
+            }
+            resetButton.parentNde.removeChild(resetButton);
+            guessField.disabled = false;
+            guessesSubmit.disabled = false;
+            guesField .value="";
+            guessField.focus();
+            lastresult.style.backgroundColor ="white";
+            randomnumber = Math.floor(Math.random()* 100)+1;
+            for (let i = 1; i < 21; i++);
+            console.log(i);
+
+
+        }   
+    </script>
+    
+</body>
+</html>
